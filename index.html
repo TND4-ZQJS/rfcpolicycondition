@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Request For Change of Customer Details and Payment Method</title>
+<title>Request For Change of Policy Condition</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
   :root{
@@ -107,7 +107,7 @@
 </head>
 <body>
 <main>
-  <h1>Request For Change of Customer Details and Payment Method (LF5188)</h1>
+  <h1>Request For Change of Policy Condition (LF5189)</h1>
 
   <!-- SECTION: Policy Info -->
   <section class="section">
@@ -164,122 +164,14 @@
   <!-- SECTION: Update Customer Details -->
   <section class="section" id="UpdateDetails">
     <h2>A. Update Customer Details</h2>
-    <small class="muted">Documentary proof is required, i.e. Birth Certificate/Identity Card/Passport.</small>
+    <small class="muted">Please provide a copy of New Employment Letter</small>
 
     <div class="row">
-    <label class="info-label">Customer's Role <small class="muted">(choose one or more to update)</small></label>
+      <label style="flex:1">New Occupation
+        <input id="Simple_BasicInfo_InsuredName" class="persist" type="text" placeholder="Enter occupation">
+      </label>
     </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_Insured" type="checkbox">Insured</label>
-      <label class="inline"><input class="persist" id="Simple_Update_PO" type="checkbox">Policy Owner</label>
-      <label class="inline"><input class="persist" id="Simple_Update_Nominee" type="checkbox">Nominee/Assignee/Trustee</label>
-        </div>
-     
-
-       <section class="section" id="UpdateInsuredDetails">
-    <h3>Insured - Update Details</h3>
-        <div class="row"> 
-      <label class="inline"><input class="persist" id="Simple_Update_Name" type="checkbox">Name</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_InsuredName" type="text" placeholder="Enter insured's name">
-        </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_DOB" type="checkbox">Date of Birth</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_InsuredDOB" type="text" placeholder="Enter insured's DOB">
-        </div>
-          <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_NIRC" type="checkbox">IC/BC/Passport No.</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_InsuredNIRC" type="text" placeholder="Enter insured's IC/BC/Passport">
-        </div>
-        <div class="row">
-          <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_Sex" type="checkbox">Sex</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_InsuredSex" type="text" placeholder="Enter insured's sex">
-        </div>
-         <div class="row">
-         <label class="inline"><input class="persist" id="Simple_Update_Country" type="checkbox">Country of Birth</label>
-         <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_InsuredCountry" type="text" placeholder="Enter insured's Country of Birth">
-         </div>
-         <div class="row">
-         <label class="inline"><input class="persist" id="Simple_Update_Nationality" type="checkbox">Nationality</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_InsuredNationality" type="text" placeholder="Enter insured's nationality">
-         </div>
-    </section>
-
-        <section class="section" id="UpdatePODetails">
-    <h3>Policy Owner - Update Details</h3>
-        <div class="row"> 
-      <label class="inline"><input class="persist" id="Simple_Update_Name" type="checkbox">Name</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_POName" type="text" placeholder="Enter policy owner's name">
-        </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_DOB" type="checkbox">Date of Birth</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_PODOB" type="text" placeholder="Enter policy owner's DOB">
-        </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_NIRC" type="checkbox">IC/BC/Passport No.</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_PONIRC" type="text" placeholder="Enter policy owner's IC/BC/Passport">
-        </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_Sex" type="checkbox">Sex</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_POSex" type="text" placeholder="Enter policy owner's sex">
-        </div>
-         <div class="row">
-         <label class="inline"><input class="persist" id="Simple_Update_Country" type="checkbox">Country of Birth</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_POCountry" type="text" placeholder="Enter policy owner's Country of Birth">
-         </div>
-         <div class="row">
-         <label class="inline"><input class="persist" id="Simple_Update_Nationality" type="checkbox">Nationality</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_PONationality" type="text" placeholder="Enter policy owner's nationality">
-         </div>
-    </section>
-
-        <section class="section" id="UpdateNomineeDetails">
-    <h3>Nominee/Trustee/Assignee - Update Details</h3>
-        <div class="row"> 
-      <label class="inline"><input class="persist" id="Simple_Update_Name" type="checkbox">Name</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_NomineeName" type="text" placeholder="Enter nominee/trustee/assignee's name">
-        </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_DOB" type="checkbox">Date of Birth</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_NomineeDOB" type="text" placeholder="Enter nominee/trustee/assignee's DOB">
-        </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_NIRC" type="checkbox">IC/BC/Passport No.</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_NomineeNIRC" type="text" placeholder="Enter nominee/trustee/assignee's IC/BC/Passport">
-        </div>
-        <div class="row">
-      <label class="inline"><input class="persist" id="Simple_Update_Sex" type="checkbox">Sex</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_NomineeSex" type="text" placeholder="Enter nominee/trustee/assignee's sex">
-        </div>
-         <div class="row">
-         <label class="inline"><input class="persist" id="Simple_Update_Country" type="checkbox">Country of Birth</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_NomineeCountry" type="text" placeholder="Enter nominee/trustee/assignee's Country of Birth">
-         </div>
-         <div class="row">
-         <label class="inline"><input class="persist" id="Simple_Update_Nationality" type="checkbox">Nationality</label>
-          <small class="muted">(tick checkbox before key in)</small><input class="persist" id="Simple_Update_NomineeNationality" type="text" placeholder="Enter nominee/trustee/assignee's nationality">
-         </div>
-    </section>
-
-  </section>
-
-    <!-- SECTION: Change of Payment Mode -->
-  <section class="section" id="ChangePaymentModeSection">
-    <h2>B. Change of Payment Mode</h2>
-    <div id="UserOption" class="grid-2">
-      <div>
-        <label class="inline"><input id="Simple_Payment_Annual" class="persist"  name="Paymentmodetype" type="radio">Annual</label>
-      </div>
-      <div>
-        <label class="inline"><input id="Simple_Payment_SemiAnnual" class="persist"  name="Paymentmodetype" type="radio">Semi-Annual</label>
-      </div>
-           <div>
-        <label class="inline"><input id="Simple_Payment_Quarterly" class="persist"  name="Paymentmodetype" type="radio">Quarterly</label>
-      </div>
-           <div>
-        <label class="inline"><input id="Simple_Payment_Monthly" class="persist"  name="Paymentmodetype" type="radio">Monthly</label>
-      </div>
-    </div>
+  
   </section>
 
     <!-- SECTION: Change of Payment Type -->
