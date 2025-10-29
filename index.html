@@ -163,7 +163,7 @@
 
   <!-- SECTION: Update Customer Details -->
   <section class="section" id="UpdateDetails">
-    <h2>A. Update Customer Details</h2>
+    <h2>A. Review Occupation Rating/Change of Occupation</h2>
     <small class="muted">Please provide a copy of New Employment Letter</small>
 
     <div class="row">
@@ -178,7 +178,25 @@
       </label>
 
       <label style="flex:1">Since - Year (YYYY)
-        <input id="Simple_BasicInfo_InsuredName" class="persist" type="number" placeholder="YYYY" maxlength="4">
+        <input id="Simple_BasicInfo_InsuredName" class="persist" placeholder="YYYY" input type="text" placeholder="MM" maxlength="4" inputmode="numeric" pattern="\d*">
+      </label>
+    </div>
+
+    <div class="row">
+      <label style="flex:1">Name of Employer
+        <input id="Simple_BasicInfo_InsuredName" class="persist" type="text" placeholder="Enter company name">
+      </label>
+    </div>
+
+    <div class="row">
+      <label style="flex:1">Nature of Business
+        <input id="Simple_BasicInfo_InsuredName" class="persist" type="text" placeholder="Enter occupation">
+      </label>
+    </div>
+
+    <div class="row">
+      <label style="flex:1">Exact Duties
+        <input id="Simple_BasicInfo_InsuredName" class="persist" type="text" placeholder="Enter occupation">
       </label>
     </div>
   </section>
