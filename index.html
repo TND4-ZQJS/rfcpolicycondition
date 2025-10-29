@@ -39,6 +39,17 @@
   }
 }
 
+ .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
   #scrollTopBtn {
   position: fixed;
   bottom: 24px;
@@ -237,15 +248,15 @@ AMOUNT, ADDITIONAL OF RIDER(S) AND REVIEW OF MEDICAL RATING OR EXCLUSION.</small
     
     <div id="UserOption" class="grid-2">
       <div>
-        <label class="inline">Rider Name(1)<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
+        <label class="inline">Rider(1) Name<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
       </div>
       
       <div>
-        <label class="inline">Increase Rider(1) Face Amount to<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter face amount"></label>
+        <label class="inline">Increase(1) Rider Face Amount to<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter face amount"></label>
       </div>
 
       <div>
-        <label class="inline">Rider Name(2)<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
+        <label class="inline">Rider(2) Name<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
       </div>
       
       <div>
@@ -253,7 +264,7 @@ AMOUNT, ADDITIONAL OF RIDER(S) AND REVIEW OF MEDICAL RATING OR EXCLUSION.</small
       </div>
 
         <div>
-        <label class="inline">Rider Name(3)<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
+        <label class="inline">Rider(3) Name<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
       </div>
       
       <div>
@@ -265,34 +276,38 @@ AMOUNT, ADDITIONAL OF RIDER(S) AND REVIEW OF MEDICAL RATING OR EXCLUSION.</small
   <!-- SECTION: Change Signature -->
   <section class="section" id="ChangeSignatureSection">
     <h2>D. Change of Signature</h2>
-    <div id="UserOption" class="grid-2">
+  <div class="row">
+      <label style="flex:1">
+        <input id="Simple_BasicInfo_InsuredName" class="persist" type="checkbox">Increase Rider(s) Face Amount
+      </label>
+     </div>
+    
+    <div id="UserOption" class="grid-3">
       <div>
-        <label class="inline"><input id="Simple_ChangeSig_Insured" class="persist" name="Changesignature" type="radio">Insured</label>
+        <label class="inline">Rider(1) Name<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
       </div>
+      
       <div>
-        <label class="inline"><input id="Simple_ChangeSig_PO" class="persist" name="Changesignature" type="radio">Policy Owner</label>
+        <label class="inline">Increase(1) Rider Face Amount to<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter face amount"></label>
       </div>
-           <div>
-        <label class="inline"><input id="Simple_ChangeSig_Assignee" class="persist" name="Changesignature" type="radio">Assignee</label>
-      </div>
-           <div>
-        <label class="inline"><input id="Simple_ChangeSig_Trustee" class="persist" name="Changesignature" type="radio">Trustee</label>
-      </div>
-    </div>
 
-      <div class="sig-preview" id="preview_simple_oldsig" onclick="openSig('simple_oldsig')">
-      <span>Tap to Sign (Old Signature)</span>
-    </div>
-    <div class="row">
-      <button id="clearPreview_Simple_Oldsig" class="secondary" type="button">Clear Signature</button>
-    </div>
+      <div>
+        <label class="inline">Rider(2) Name<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
+      </div>
+      
+      <div>
+        <label class="inline">Increase Rider(2) Face Amount to<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter face amount"></label>
+      </div>
 
-      <div class="sig-preview" id="preview_simple_newsig" onclick="openSig('simple_newsig')">
-      <span>Tap to Sign (New Signature)</span>
+        <div>
+        <label class="inline">Rider(3) Name<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter rider name"></label>
+      </div>
+      
+      <div>
+        <label class="inline">Increase Rider(3) Face Amount to<input id="Simple_Payment_Internet" class="persist" name="Paymentmethodtype" type="text" placeholder="Enter face amount"></label>
+      </div>
     </div>
-    <div class="row">
-      <button id="clearPreview_Simple_Newsig" class="secondary" type="button">Clear Signature</button>
-    </div>
+    
   </section>
 
    <!-- SECTION: Others -->
