@@ -889,7 +889,7 @@ $("clearPreview_Simple_Assignee").addEventListener("click", ()=>{
 });
 
 window.addEventListener("DOMContentLoaded", ()=>{
-  ["owner","witness","assignee","oldsig","newsig"].forEach(role=>{
+  ["owner","witness","assignee"].forEach(role=>{
     const saved = localStorage.getItem("sig_simple_"+role);
     if(saved){ $("preview_simple_"+role).innerHTML = `<img alt="Signature ${role}" src="${saved}">`; }
   });
