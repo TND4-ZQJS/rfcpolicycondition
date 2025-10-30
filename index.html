@@ -793,10 +793,6 @@ if (target === 'simple_owner') {
   $("sigModalTitle").textContent = "Sign: Witness";
 } else if (target === 'simple_assignee') {
   $("sigModalTitle").textContent = "Sign: Trustee";
-} else if (target === 'simple_oldsig') {
-  $("sigModalTitle").textContent = "Sign: Old Signature";
-} else if (target === 'simple_newsig') {
-  $("sigModalTitle").textContent = "Sign: New Signature";
 }
 
   sigModal.style.display = "block";
@@ -895,14 +891,7 @@ $("clearPreview_Simple_Assignee").addEventListener("click", ()=>{
   localStorage.removeItem("sig_simple_assignee");
   $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Assignee)</span>`;
 });
-$("clearPreview_Simple_Oldsig").addEventListener("click", ()=>{
-  localStorage.removeItem("sig_simple_oldsig");
-  $("preview_simple_oldsig").innerHTML = `<span>Tap to Sign (Old Signature)</span>`;
-});
-$("clearPreview_Simple_Newsig").addEventListener("click", ()=>{
-  localStorage.removeItem("sig_simple_newsig");
-  $("preview_simple_newsig").innerHTML = `<span>Tap to Sign (New Signature)</span>`;
-});
+
 window.addEventListener("DOMContentLoaded", ()=>{
   ["owner","witness","assignee","oldsig","newsig"].forEach(role=>{
     const saved = localStorage.getItem("sig_simple_"+role);
@@ -1133,72 +1122,6 @@ if (sig_Simple_Assignee) {
     console.error(e);
   }
 }
-
-    // Oldsig signature FillPDF
-const sig_Simple_Oldsig = localStorage.getItem("sig_simple_oldsig");
-if (sig_Simple_Oldsig) {
-  try {
-    const img_Simple_Oldsig = await pdfDoc.embedPng(sig_Simple_Oldsig);
-    const { width, height } = img_Simple_Oldsig.size();
-
-    const previewEl = document.getElementById("preview_simple_oldsig");
-    const boxW = previewEl.offsetWidth;
-    const boxH = previewEl.offsetHeight;
-
-    const scale = Math.min(boxW / width, boxH / height);
-    let drawW = width * scale;
-    let drawH = height * scale;
-
-    const factor = 0.40;    // % scale
-    const posX = 75;         // X position on PDF
-    const posY = 650;        // Y position on PDF
-
-    drawW *= factor;
-    drawH *= factor;
-
-    page.drawImage(img_Simple_Oldsig, {
-      x: posX,
-      y: posY,
-      width: drawW,
-      height: drawH
-    });
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-    // Newsig signature FillPDF
-const sig_Simple_Newsig = localStorage.getItem("sig_simple_newsig");
-if (sig_Simple_Newsig) {
-  try {
-    const img_Simple_Newsig = await pdfDoc.embedPng(sig_Simple_Newsig);
-    const { width, height } = img_Simple_Newsig.size();
-
-    const previewEl = document.getElementById("preview_simple_newsig");
-    const boxW = previewEl.offsetWidth;
-    const boxH = previewEl.offsetHeight;
-
-    const scale = Math.min(boxW / width, boxH / height);
-    let drawW = width * scale;
-    let drawH = height * scale;
-
-    const factor = 0.40;    // % scale
-    const posX = 390;         // X position on PDF
-    const posY = 650;        // Y position on PDF
-
-    drawW *= factor;
-    drawH *= factor;
-
-    page.drawImage(img_Simple_Newsig, {
-      x: posX,
-      y: posY,
-      width: drawW,
-      height: drawH
-    });
-  } catch (e) {
-    console.error(e);
-  }
-}
     
     // Flatten form fields before saving
     form.flatten();
@@ -1242,8 +1165,7 @@ function resetAll() {
   $("preview_simple_owner").innerHTML   = `<span>Tap to Sign (Policy Owner)</span>`;
   $("preview_simple_witness").innerHTML = `<span>Tap to Sign (Witness)</span>`;
   $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Assignee)</span>`;
-  $("preview_simple_oldsig").innerHTML  = `<span>Tap to Sign (Old Signature)</span>`;
-  $("preview_simple_newsig").innerHTML  = `<span>Tap to Sign (New Signature)</span>`;
+
 
   // 4) Update status text if you have it
   showSaveStatus();
