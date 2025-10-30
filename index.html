@@ -634,10 +634,10 @@ document.addEventListener("DOMContentLoaded", () => {
     inputs.forEach(el => el.disabled = !enabled);
 
     // 👇 visual cue: either dim, or hide completely (choose one)
-    sectionEl.style.opacity = enabled ? "1" : "0.6";
-    sectionEl.style.pointerEvents = enabled ? "auto" : "none";
+    //sectionEl.style.opacity = enabled ? "1" : "0.6";
+    //sectionEl.style.pointerEvents = enabled ? "auto" : "none";
     // If you prefer hiding instead of dimming, use:
-    // sectionEl.style.display = enabled ? "" : "none";
+    sectionEl.style.display = enabled ? "" : "none";
   }
 
   Object.entries(CONTROLLER_BY_SECTION).forEach(([sectionId, controllerId]) => {
