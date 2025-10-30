@@ -173,7 +173,7 @@
 
 
   <!-- SECTION A: Update Occupation Rating -->
-  <section class="section" id="Updateoccupation">
+  <section class="section" id="UpdateoccupationSection">
     <h2>A. Review Occupation Rating/Change of Occupation</h2>
     <small class="muted">Important note: Please provide a copy of New Employment Letter</small>
 
@@ -213,7 +213,7 @@
   </section>
 
     <!-- SECTION B: Reduce Regular Premium -->
-  <section class="section" id="Reducepremium">
+  <section class="section" id="ReducepremiumSection">
     <h2>B. Reduction of Regular Premium</h2>
     <div id="UserOption" class="grid-2">
       <div>
@@ -226,7 +226,7 @@
   </section>
 
       <!-- SECTION C: Increase Face Amount -->
-  <section class="section" id="IncreaseFA">
+  <section class="section" id="IncreaseFASection">
     <h2>C. Increase of Face Amount</h2>
  <div class="row">
   <small class="muted">Important Note: Health Declaration for Change of Policy Condition Form (Form No. LF4066) would be required for increase of face amount, addition of rider(s), and review of medical rating or exclusion.</small>
@@ -280,7 +280,7 @@
   </section>
   
   <!-- SECTION D: Additional Rider -->
-  <section class="section" id="Addrider">
+  <section class="section" id="AddriderSection">
     <h2>D. Additional of Rider(s)</h2>
 
     <div class="row">
@@ -343,7 +343,7 @@
   </section>
 
   <!-- SECTION: Review Medical Rating/Exclusion -->
-  <section class="section" id="Reviewmedrating">
+  <section class="section" id="ReviewmedratingSection">
     <h2>E. Review of Medical Rating or Exclusion</h2>
 
     <div class="row">
@@ -361,7 +361,7 @@
   </section>
 
   <!-- SECTION F: Reduce Face Amount -->
-  <section class="section" id="ReduceFA">
+  <section class="section" id="ReduceFASection">
     <h2>F. Reduction of Face Amount</h2>
  <div class="row">
   <small class="muted">The trust nominees’ (under Schedule 10 [Section 130] of the Financial Services Act 2013) consent is required if there is no trustee being appointed for the request of reduction of face amount and cancellation of rider(s).</small>
@@ -415,7 +415,7 @@
   </section>
 
    <!-- SECTION G: Cancellation of Rider -->
-      <section class="section" id="Cancelrider">
+      <section class="section" id="CancelriderSection">
   <h2>G. Cancellation of Rider(s)</h2>
  <div class="row">
   <small class="muted">The trust nominees’ (under Schedule 10 [Section 130] of the Financial Services Act 2013) consent is required if there is no trustee being appointed for the request of reduction of face amount and cancellation of rider(s).</small>
@@ -444,7 +444,7 @@
 
 
    <!-- SECTION: Others -->
-  <section class="section" id="Otherschangecondition">
+  <section class="section" id="OtherschangeconditionSection">
     <h2>E. Others</h2>
     <div class="row">
       <input id="Simple_Update_Others_Line1" class="persist" type="text" placeholder="Line 1">
@@ -615,6 +615,7 @@
 const PDF_FILENAME = "Request For Change of Customer Details And Payment Method_LF5188_fillable.pdf";
 
 // ----------------- Section inclusion helper -----------------
+// ---------- SECTION CONTROL CONFIG ----------
 const CONTROLLER_BY_SECTION = {
   UpdateoccupationSection: "Updateoccupation",
   ReducepremiumSection: "Reducepremium",
@@ -622,27 +623,51 @@ const CONTROLLER_BY_SECTION = {
   AddriderSection: "Addrider",
   ReviewmedratingSection: "Reviewmedrating",
   ReduceFASection: "ReduceFA",
-  CancelRiderSection: "CancelRider",
-  OthersChangecondtionSection: "OthersChangecondition"
+  CancelriderSection: "Cancelrider",
+  OthersChangecondtionSection: "Otherschangecondition",
 };
 
-// Returns true if a DOM input (by id) should be exported to the PDF.
-// Walks up the DOM tree: if any ancestor section is controlled by a checkbox
-// that is currently UNchecked, returns false (skip).
+// ---------- UI ENABLE/DISABLE TOGGLE ----------
+document.addEventListener("DOMContentLoaded", () => {
+  function setSectionEnabled(sectionEl, enabled) {
+    if (!sectionEl) return;
+    const inputs = sectionEl.querySelectorAll("input, select, textarea, button");
+    inputs.forEach(el => el.disabled = !enabled);
+
+    // 👇 visual cue: either dim, or hide completely (choose one)
+    sectionEl.style.opacity = enabled ? "1" : "0.6";
+    sectionEl.style.pointerEvents = enabled ? "auto" : "none";
+    // If you prefer hiding instead of dimming, use:
+    // sectionEl.style.display = enabled ? "" : "none";
+  }
+
+  Object.entries(CONTROLLER_BY_SECTION).forEach(([sectionId, controllerId]) => {
+    const controller = document.getElementById(controllerId);
+    const section = document.getElementById(sectionId);
+    if (controller && section) {
+      const updateState = () => setSectionEnabled(section, controller.checked);
+      controller.addEventListener("change", updateState);
+      updateState(); // initialize state on load
+    }
+  });
+});
+
+// ---------- EXPORT FILTER LOGIC ----------
 function shouldIncludeFieldByUI(fieldId) {
   const el = document.getElementById(fieldId);
-  if (!el) return true; // if element isn't present in DOM, include by default
+  if (!el) return true;
   let parent = el;
   while (parent && parent !== document.body) {
     if (parent.id && CONTROLLER_BY_SECTION[parent.id]) {
       const controllerId = CONTROLLER_BY_SECTION[parent.id];
       const cb = document.getElementById(controllerId);
-      if (cb && !cb.checked) return false; // section unticked → skip
+      if (cb && !cb.checked) return false; // skip if unchecked
     }
     parent = parent.parentElement;
   }
   return true;
 }
+
 
 /* ---SAVE STATUS + LOCALSTORAGE (Text, Checkbox, Dropdown) ---------- */
 const saveStatusEl = document.getElementById("saveStatus");
@@ -1172,41 +1197,6 @@ $("generate").addEventListener("click", fillPDF);
 $("resetAll").addEventListener("click", resetAll);
 document.querySelectorAll(".persist").forEach(autoBindSave);
 
-
-// ---------- SECTION TOGGLE LOGIC ----------
-document.addEventListener("DOMContentLoaded", () => {
-  // Utility: enable/disable all inputs in a section
-  function setSectionEnabled(sectionEl, enabled) {
-    if (!sectionEl) return;
-    const inputs = sectionEl.querySelectorAll("input, select, textarea");
-    inputs.forEach(el => el.disabled = !enabled);
-  }
-
-  // Map each controlling checkbox → section
-  const sectionMap = {
-    "Updatedetails": "UpdateDetails",
-    "Changepaymentmode": "ChangePaymentModeSection",
-    "Changepaymentmethod": "ChangePaymentMethodSection",
-    "Changesignature": "ChangeSignatureSection",
-    "Others": "OtherSection"
-  };
-
-  // Toggle logic
-  Object.keys(sectionMap).forEach(cbId => {
-    const cb = $(cbId);
-    const sec = $(sectionMap[cbId]);
-    if (!cb || !sec) return;
-
-    // Initial state
-    sec.style.display = cb.checked ? "block" : "none";
-    setSectionEnabled(sec, cb.checked);
-
-    // On change
-    cb.addEventListener("change", () => {
-      sec.style.display = cb.checked ? "block" : "none";
-      setSectionEnabled(sec, cb.checked);
-    });
-  });
 
   // Nested role sections (inside UpdateDetails)
   const roleMap = {
