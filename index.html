@@ -619,7 +619,7 @@
 }
   
 /* ---------- CONFIG ---------- */
-const PDF_FILENAME = "Request For Change of Customer Details And Payment Method_LF5188_fillable.pdf";
+const PDF_FILENAME = "Request-For-Change-of-Policy-Condition_LF5189_fillable.pdf";
 
 // ---------- SECTION CONTROL CONFIG ----------
 const CONTROLLER_BY_SECTION = {
@@ -939,105 +939,76 @@ async function fillPDF(){
     const form = pdfDoc.getForm();
 
     const pages = pdfDoc.getPages();
-    const page = pages[1]; // use 2nd page
+    const page = pages[2]; // use 2nd page
 
-    /* ===== RADIO (UI) -> PDF CHECKBOX (fields) MAPPING ===== */
-// helper to map a radio group (saved under groupName) to a list of PDF checkbox field names
-function mapRadioGroupToPdfCheckboxes(groupName, pdfCheckboxNames, controllerCheckboxId) {
-  // If controller is provided and it's unticked, clear PDF checkboxes and return
-  if (controllerCheckboxId) {
-    const ctrl = document.getElementById(controllerCheckboxId);
-    if (ctrl && !ctrl.checked) {
-      pdfCheckboxNames.forEach(fieldName => {
-        try { form.getCheckBox(fieldName).uncheck(); } catch (e) {}
-      });
-      return;
-    }
-  }
-
-  // Otherwise set according to saved radio choice
-  const selectedId = localStorage.getItem(groupName);
-  pdfCheckboxNames.forEach(fieldName => {
-    try {
-      const field = form.getCheckBox(fieldName);
-      if (fieldName === selectedId) field.check();
-      else field.uncheck();
-    } catch (e) {
-      console.warn(`Checkbox field ${fieldName} not found in PDF`);
-    }
-  });
-}
-    
-// replace your previous calls with these:
-mapRadioGroupToPdfCheckboxes("Paymentmodetype", [
-  "Simple_Payment_Annual",
-  "Simple_Payment_SemiAnnual",
-  "Simple_Payment_Quarterly",
-  "Simple_Payment_Monthly"
-], "Changepaymentmode");
-
-mapRadioGroupToPdfCheckboxes("Paymentmethodtype", [
-  "Simple_Payment_FPX",
-  "Simple_Payment_Internet"
-], "Changepaymentmethod");
-
-mapRadioGroupToPdfCheckboxes("Changesignature", [
-  "Simple_ChangeSig_Insured",
-  "Simple_ChangeSig_Assignee",
-  "Simple_ChangeSig_PO",
-  "Simple_ChangeSig_Trustee"
-], "Changesignature");
-/* ===== end mapping ===== */
-
- 
 
     // FILL FORM FIELDS FROM LOCALSTORAGE HERE
 const fieldNames = [
-  "Simple_BasicInfo_InsuredName",
-  "Simple_BasicInfo_PolicyNo",
-  "Simple_BasicInfo_InsuredNIRC",
-  "Simple_Update_Name",
-  "Simple_Update_Insured",
-  "Simple_Update_InsuredName",
-  "Simple_Update_DOB",
-  "Simple_Update_PO",
-  "Simple_Update_Nominee",
-  "Simple_Update_NIRC",
-  "Simple_Update_Sex",
-  "Simple_Update_Country",
-  "Simple_Update_Nationality",
-  "Simple_Update_InsuredDOB",
-  "Simple_Update_InsuredNIRC",
-  "Simple_Update_InsuredSex",
-  "Simple_Update_InsuredCountry",
-  "Simple_Update_InsuredNationality",
-  "Simple_Update_POName",
-  "Simple_Update_PODOB",
-  "Simple_Update_PONIRC", 
-  "Simple_Update_POSex", 
-  "Simple_Update_POCountry",
-  "Simple_Update_PONationality",
-  "Simple_Update_NomineeName",
-  "Simple_Update_NomineeDOB",
-  "Simple_Update_NomineeNIRC",
-  "Simple_Update_NomineeSex",
-  "Simple_Update_NomineeCountry",
-  "Simple_Update_NomineeNationality",
-  "Simple_Update_Others_Line1",
-  "Simple_Update_Others_Line2",
-  "Simple_Update_Others_Line3",
-  "Simple_Update_Others_Line4",
-  "Simple_SignState",
-  "Simple_SignDay",
-  "Simple_SignMonth",
-  "Simple_SignYear",
-  "Simple_SignPO_Name",
-  "Simple_SignPO_NIRC",
-  "Simple_SignAssignee_Name",
-  "Simple_SignAssignee_NIRC",
-  "Simple_SignWitness_Name",
-  "Simple_SignWitness_NIRC",
-  "Simple_SignWitness_Mobile"
+  "Complx_Insured_Name",
+  "SComplx_PolicyNo",
+  "Complx_Insured_NIRC",
+  "Complx_Occupation_New",
+  "Complx_Occupation_Comp",
+  "Complx_Occupation_Duty",
+  "Complx_Occupation_MM",
+  "Complx_Occupation_YYYY",
+  "Complx_Occupation_Nature",
+  "Complx_ReducePremium_Basic_Yes",
+  "Complx_ReducePremium_Basic_Amt",
+  "Complx_ReducePremium_Topup_Yes",
+  "Complx_ReducePremium_Topup_Amt",
+  "Complx_IncreaseFA_Basic",
+  "Complx_IncreaseFA_Basic_Yes",
+  "Complx_IncreaseFA_Rider_Yes",
+  "Complx_IncreaseFA_Rider1_Name",
+  "Complx_IncreaseFA_Rider1_FA",
+  "Complx_IncreaseFA_Rider2_Name",
+  "Complx_IncreaseFA_Rider3_Name",
+  "Complx_IncreaseFA_Rider2_FA", 
+  "Complx_IncreaseFA_Rider3_FA", 
+  "Complx_AddRider_Yes",
+  "Complx_AddRider1_Name",
+  "Complx_AddRider1_Term",
+  "Complx_AddRider1_FA",
+  "Complx_AddRider2_Name",
+  "Complx_AddRider3_Name",
+  "Complx_AddRider2_Term",
+  "Complx_AddRider3_Term",
+  "Complx_AddRider2_FA",
+  "Complx_AddRider3_FA",
+  "Complx_Review_Rating",
+  "Complx_Review_Exclusion",
+  "Complx_ReduceFA_Basic_Yes",
+  "Complx_ReduceFA_Basic_Amt",
+  "Complx_ReduceFA_Rider_Yes",
+  "Complx_ReduceFA_Rider1_Name2",
+  "Complx_ReduceFA_Rider1_Name3",
+  "Complx_ReduceFA_Rider1_FA1",
+  "Complx_ReduceFA_Rider1_FA2",
+  "Complx_ReduceFA_Rider1_FA3",
+  "Complx_CancelRider_Yes",
+  "Complx_ReduceFA_Rider_Name1",
+  "Complx_CancelRider_Name1",
+  "Complx_CancelRider_Name2",
+  "Complx_CancelRider_Name3",
+  "Complx_CancelRider_Name4",
+  "Complx_CancelRider_Name5",
+  "Complx_CancelRider_Name6",
+  "Complx_Others_Line1",
+  "Complx_Others_Line2",
+  "Complx_Others_Line3",
+  "Complx_Others_Line4",
+  "Complx_Sign_State",
+  "Complx_Sign_Day",
+  "Complx_Sign_Month",
+  "Complx_Sign_Year",
+  "Complx_Sign_PO_Name",
+  "Complx_Sign_PO_NIRC",
+  "Complx_Sign_Trustee_Name",
+  "Complx_Sign_Trustee_NIRC",
+  "Complx_Sign_Witness_Name",
+  "Complx_Sign_Witness_NIRC",
+  "Complx_Sign_Witness_Mobile"
 ];
 
 fieldNames.forEach(fieldName => {
