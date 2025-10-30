@@ -1197,28 +1197,6 @@ $("resetAll").addEventListener("click", resetAll);
 document.querySelectorAll(".persist").forEach(autoBindSave);
 
 
-  // Nested role sections (inside UpdateDetails)
-  const roleMap = {
-    "Simple_Update_Insured": "UpdateInsuredDetails",
-    "Simple_Update_PO": "UpdatePODetails",
-    "Simple_Update_Nominee": "UpdateNomineeDetails"
-  };
-
-  Object.keys(roleMap).forEach(cbId => {
-    const cb = $(cbId);
-    const sec = $(roleMap[cbId]);
-    if (!cb || !sec) return;
-
-    sec.style.display = cb.checked ? "block" : "none";
-    setSectionEnabled(sec, cb.checked);
-
-    cb.addEventListener("change", () => {
-      sec.style.display = cb.checked ? "block" : "none";
-      setSectionEnabled(sec, cb.checked);
-    });
-  });
-});
-
   // Show button when user scrolls down
 window.addEventListener("scroll", () => {
   const btn = document.getElementById("scrollTopBtn");
