@@ -908,7 +908,7 @@ window.addEventListener("resize", ()=> {
 /* Clear preview buttons + Restore previews on load */
 $("clearPreview_Simple_Owner").addEventListener("click", ()=>{
   localStorage.removeItem("sig_simple_owner");
-  $("preview_simple_owner").innerHTML = `<span>Tap to Sign (Owner)</span>`;
+  $("preview_simple_owner").innerHTML = `<span>Tap to Sign (Policyowner/Assignee)</span>`;
 });
 $("clearPreview_Simple_Witness").addEventListener("click", ()=>{
   localStorage.removeItem("sig_simple_witness");
@@ -916,7 +916,7 @@ $("clearPreview_Simple_Witness").addEventListener("click", ()=>{
 });
 $("clearPreview_Simple_Assignee").addEventListener("click", ()=>{
   localStorage.removeItem("sig_simple_assignee");
-  $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Assignee)</span>`;
+  $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Trustee/Nominee)</span>`;
 });
 
 window.addEventListener("DOMContentLoaded", ()=>{
@@ -1160,9 +1160,9 @@ function resetAll() {
   });
 
   // 3) Reset signature previews
-  $("preview_simple_owner").innerHTML   = `<span>Tap to Sign (Policy Owner)</span>`;
+  $("preview_simple_owner").innerHTML   = `<span>Tap to Sign (Policyowner/Assignee)</span>`;
   $("preview_simple_witness").innerHTML = `<span>Tap to Sign (Witness)</span>`;
-  $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Assignee)</span>`;
+  $("preview_simple_assignee").innerHTML = `<span>Tap to Sign (Trustee/Nominee)</span>`;
 
 
   // 4) Update status text if you have it
