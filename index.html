@@ -147,10 +147,33 @@ input[readonly] {
   <section class="section">
     <h2>Policy Information</h2>
 
+  <section class="section">
     <label>Policy No.
       <input id="Complx_PolicyNo" class="persist" type="text" placeholder="Enter policy no.">
     </label>
+  </section>
 
+  <section class="section">
+  
+    <div class="row">
+      <label>
+      <input type="checkbox" id="same_as_insured"> Policyowner is same as Insured
+      </label>
+    </div>
+    
+    <div class="row">
+      <label style="flex:1">Name of Policyowner/Assignee
+        <input id="Complx_Sign_PO_Name" class="persist" type="text" placeholder="Enter name">
+      </label>
+    </div>
+    <div class="row">
+    <label style="flex:1">IC No.
+        <input id="Complx_Sign_PO_NIRC" class="persist" type="text" placeholder="Enter NIRC no.">
+    </label>
+    </div>
+  </section>
+  
+   <section class="section">
     <div class="row">
       <label style="flex:1">Insured's Name
         <input id="Complx_Insured_Name" class="persist" type="text" placeholder="Enter name">
@@ -162,6 +185,27 @@ input[readonly] {
       </label>
     </div>
   </section>
+
+  <section class="section">
+      <div class="row">
+      <label style="flex:1">Name of Witness
+        <input id="Complx_Sign_Witness_Name" class="persist" type="text" placeholder="Enter name">
+      </label>
+    </div>
+    <div class="row">
+      <label style="flex:1">IC No.
+        <input id="Complx_Sign_Witness_NIRC" class="persist" type="text" placeholder="Enter NIRC no.">
+      </label>
+      <label style="flex:1">Mobile No.
+        <input id="Complx_Sign_Witness_Mobile" class="persist" type="text" placeholder="Enter mobile no.">
+      </label>
+    </div>
+
+  </section>
+  
+
+  </section>
+
 
  <!-- SECTION: User Options -->
   <section id="UserOption" class="section">
@@ -545,23 +589,6 @@ input[readonly] {
   <section class="section">
     <h2>Signature of Policy Owner/Assignee</h2>
 
-    <div class="row">
-      <label>
-      <input type="checkbox" id="same_as_insured"> Policyowner is same as Insured
-      </label>
-    </div>
-    
-    <div class="row">
-      <label style="flex:1">Name of Policyowner/Assignee
-        <input id="Complx_Sign_PO_Name" class="persist" type="text" placeholder="Enter name">
-      </label>
-    </div>
-    <div class="row">
-    <label style="flex:1">IC No.
-        <input id="Complx_Sign_PO_NIRC" class="persist" type="text" placeholder="Enter NIRC no.">
-    </label>
-    </div>
-
         <div class="sig-preview" id="preview_simple_owner" onclick="openSig('simple_owner')">
       <span>Tap to Sign (Policyowner / Assignee)</span>
     </div>
@@ -573,19 +600,6 @@ input[readonly] {
   <!-- SECTION: Witness Signature -->
   <section class="section">
     <h2>Signature of Witness</h2>
-    <div class="row">
-      <label style="flex:1">Name of Witness
-        <input id="Complx_Sign_Witness_Name" class="persist" type="text" placeholder="Enter name">
-      </label>
-    </div>
-    <div class="row">
-      <label style="flex:1">IC No.
-        <input id="Complx_Sign_Witness_NIRC" class="persist" type="text" placeholder="Enter NIRC no.">
-      </label>
-      <label style="flex:1">Mobile No.
-        <input id="Complx_Sign_Witness_Mobile" class="persist" type="text" placeholder="Enter mobile no.">
-      </label>
-    </div>
 
     <div class="sig-preview" id="preview_simple_witness" onclick="openSig('simple_witness')">
       <span>Tap to Sign (Witness)</span>
